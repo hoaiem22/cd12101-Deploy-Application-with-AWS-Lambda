@@ -4,9 +4,10 @@ import {
   createTodo,
   updateTodo,
   deleteTodo,
-  updateTodoImage,
+  updateTodoImage
 } from '../dataLayer/todosAccess.mjs'
 import { generateImageUrl } from '../fileStorage/attachmentUtils.mjs'
+
 const getTodosAction = async (userId) => {
   const result = await getTodos(userId)
   return result

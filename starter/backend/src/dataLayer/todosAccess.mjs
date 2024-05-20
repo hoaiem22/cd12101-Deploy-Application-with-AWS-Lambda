@@ -1,7 +1,11 @@
 import { DynamoDB } from '@aws-sdk/client-dynamodb'
 import { DynamoDBDocument } from '@aws-sdk/lib-dynamodb'
+import AWSXRay from 'aws-xray-sdk-core'
 
-const dynamodbClient = DynamoDBDocument.from(new DynamoDB())
+const dynamoDB = new DynamoDB()
+const dynamoDbXRay = AWSXRay.captureAWSv3Client(dynamoDB)
+const dynamodbClient = DynamoDBDocument.from(dynamoDbXRay)
+// const dynamodbClient = DynamoDBDocument.from(new DynamoDB())
 
 const todosTable = process.env.TODOS_TABLE
 const todosByUserIndexTable = process.env.TODOS_BY_USER_INDEX
